@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
 from bson.objectid import ObjectId  # This is needed to work with MongoDB's _id
@@ -13,7 +14,14 @@ app = Flask(__name__)
 # Replace 'notes-cluster.abc12.mongodb.net' with your cluster's address.
 # The 'notes_db' at the end is the name of the database that will be created.
 try:
-    MONGO_URI = "mongodb+srv://riteshmusically2003_db_user:Ritesh3012@cluster0.p4ihohc.mongodb.net/?appName=Cluster0"
+    # ADD THESE 4 NEW LINES:
+    MONGO_URI = os.environ.get('MONGO_URI')
+    if not MONGO_URI:
+        print("❌ ERROR: MONGO_URI environment variable not set.", file=sys.stderr)
+        sys.exit(1)
+
+    # This line was already here:
+    client = MongoClient(MONGO_URI)
     client = MongoClient(MONGO_URI)
     db = client.notes_db # The database
     notes_collection = db.notes  # The collection (like a table)
@@ -134,4 +142,5 @@ def delete_note(id):
 # --- 4. RUN THE FLASK APP ---
 if __name__ == '__main__':
     # debug=True will auto-reload the server when you save the file
+
     app.run(debug=True)
