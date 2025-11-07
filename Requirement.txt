@@ -1,29 +1,3 @@
-{
- "cells": [
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "daf4d0db-c842-414b-8034-90c76731b66d",
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "flask\n",
-    "pymongo"
-   ]
-  }
- ],
- "metadata": {
-  "kernelspec": {
-   "display_name": "",
-   "name": ""
-  },
-  "language_info": {
-   "name": ""
-  }
- },
- "nbformat": 4,
- "nbformat_minor": 5
-}
 flask
 pymongo
 gunicorn
